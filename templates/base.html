@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BI - APPNAME</title>
+    <link rel="stylesheet" href="/static/bulma.min.css"/>
+</head>
+
+<nav class="navbar is-transparent">
+    <div class="navbar-brand" >
+        <img src="/static/logo_flat.png" width="30%">
+      <a class="navbar-item" href="{{ url_for('main.index') }}">
+        <p class="title" style="font-size: 20px;">Business Intelligence</p>
+      </a>
+      <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  
+    <div id="navbarExampleTransparentExample" class="navbar-menu" >
+        <div class="navbar-end" style="color:#006900; font-size: 24px;">
+            <a href="{{ url_for('main.index') }}" class="navbar-item">
+                Home
+            </a>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('main.profile') }}" class="navbar-item">
+                Profile
+            </a>
+            {% endif %}
+            {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                Login
+            </a>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                Logout
+            </a>
+            {% endif %}
+        </div>
+      </div>
+  </nav>
+
+<body style="color:#006900"></body>
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
